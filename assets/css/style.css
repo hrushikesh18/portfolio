@@ -632,6 +632,21 @@ section .container {
 /*--------------------------------------------------------------
 # Resume
 --------------------------------------------------------------*/
+/* Resume Download */
+.resume .btn {
+  background-color:#BA14F6;
+  border: none;
+  color: white;
+  padding: 8px 18px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Darker background on mouse-over */
+.resume .btn:hover {
+  background-color: #404167;
+}
+
 .resume .resume-title {
   font-size: 26px;
   font-weight: 700;
