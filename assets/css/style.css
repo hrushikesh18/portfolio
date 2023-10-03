@@ -644,7 +644,7 @@ section .container {
 
 /* Darker background on mouse-over */
 .resume .btn:hover {
-  background-color: #ba14f6c5;
+  background-color: #2f2632;
 }
 
 .resume .resume-title {
