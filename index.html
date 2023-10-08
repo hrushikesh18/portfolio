@@ -47,17 +47,35 @@
         window.onload = function() {
             document.getElementById('contact-form').addEventListener('submit', function(event) {
                 event.preventDefault();
+                let thisForm = this;
+                thisForm.querySelector('.loading').classList.add('d-block');
+                thisForm.querySelector('.error-message').classList.remove('d-block');
+                thisForm.querySelector('.sent-message').classList.remove('d-block');
                 // generate a five digit number for the contact_number variable
                 this.contact_number.value = Math.random() * 100000 | 0;
                 // these IDs from the previous steps
                 emailjs.sendForm('service_wd4loq5', 'template_bgbg347', this)
                     .then(function() {
                         console.log('SUCCESS!');
+                        thisForm.querySelector('.loading').classList.remove('d-block');
+                        if (data.trim() == 'OK') {
+                          thisForm.querySelector('.sent-message').classList.add('d-block');
+                          thisForm.reset(); 
+                        } else {
+                           throw new Error(data ? data : 'Form submission failed and no error message returned from: ' + action); 
+                        }
                     }, function(error) {
                         console.log('FAILED...', error);
+                        displayError(thisForm, error);
                     });
-            });
+                    function displayError(thisForm, error) {
+                      thisForm.querySelector('.loading').classList.remove('d-block');
+                      thisForm.querySelector('.error-message').innerHTML = error;
+                      thisForm.querySelector('.error-message').classList.add('d-block');
+                    }
+                });
         }
+        
     </script>
     <!-- Email js code ends here -->
 </head>
@@ -450,7 +468,7 @@
       </div>
 
       <div class="row">
-        <button class="btn"><a href="assets\img\Hrushikesh Dagwar.pdf" download> </i> Download PDF</a></button>
+        <a href="assets\img\Hrushikesh Dagwar.pdf" download><button class="btn"> </i> Download PDF</a></button></a>
         <!-- <div class="col-lg-6">
           <h3 class="resume-title">Summary</h3>
           <div class="resume-item pb-0">
