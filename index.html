@@ -58,11 +58,11 @@
                     .then(function() {
                         console.log('SUCCESS!');
                         thisForm.querySelector('.loading').classList.remove('d-block');
-                        if (data.trim() == 'OK') {
+                        try{
                           thisForm.querySelector('.sent-message').classList.add('d-block');
                           thisForm.reset(); 
-                        } else {
-                           throw new Error(data ? data : 'Form submission failed and no error message returned from: ' + action); 
+                        }catch(error){
+                          //  throw new Error(data ? data : 'Form submission failed and no error message returned from: ' + action); 
                         }
                     }, function(error) {
                         console.log('FAILED...', error);
